@@ -39,11 +39,22 @@ function App() {
     setFormshown(!isFormShown)
   }
 
+  function uploadNewData(userInput) {
+    fetch(`http://localhost:6001/listings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInput)
+    })
+    .then((res) => res.json())
+    .then((newData) => setListings(newData))
+  }
   return (
     <div className="app">
       <Header onSearchHandle={ handleUserSearch }/>
       <button onClick={handleFormShow}>{isFormShown ? "Hide Form" : "Add New Data"}</button>
-      {isFormShown ? <AddListingForm /> : null}
+      {isFormShown ? <AddListingForm handleDataUpload={uploadNewData}/> : null}
       <ListingsContainer productListings={listings} handleListingDelete={onItemDelete} handleListingSort={sortListings}/>
     </div>
   );
