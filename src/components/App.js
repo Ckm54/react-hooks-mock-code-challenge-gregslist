@@ -48,7 +48,10 @@ function App() {
       body: JSON.stringify(userInput)
     })
     .then((res) => res.json())
-    .then((newData) => setListings(newData))
+    .then((newData) => {
+      setListings([...listings, newData])
+      handleFormShow()
+    })
   }
   return (
     <div className="app">

@@ -30,7 +30,6 @@ function AddListingForm({ handleDataUpload }) {
   function handleFormsubmit(e) {
     e.preventDefault()
     // uploadImage()
-    console.log(formData)
     const sentData = {
       ...formData,
       image: `./images/${imageFile.name}`
