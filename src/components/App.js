@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import AddListingForm from "./AddListingForm";
 import Header from "./Header";
 import ListingsContainer from "./ListingsContainer";
 
 function App() {
 
   const [listings, setListings] = useState([])
+  const [isFormShown, setFormshown] = useState(false)
 
   useEffect(() => {
     fetch(`http://localhost:6001/listings`)
@@ -33,9 +35,15 @@ function App() {
     setListings(sortedListings)
   }
 
+  function handleFormShow() {
+    setFormshown(!isFormShown)
+  }
+
   return (
     <div className="app">
       <Header onSearchHandle={ handleUserSearch }/>
+      <button onClick={handleFormShow}>{isFormShown ? "Hide Form" : "Add New Data"}</button>
+      {isFormShown ? <AddListingForm /> : null}
       <ListingsContainer productListings={listings} handleListingDelete={onItemDelete} handleListingSort={sortListings}/>
     </div>
   );
