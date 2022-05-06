@@ -11,7 +11,6 @@ function ListingsContainer() {
   }, [])
 
   function handleListingDelete(item) {
-    console.log("in listing container: ", item)
     fetch(`http://localhost:6001/listings/${item.id}`, {
       method: "DELETE"
     })
@@ -22,8 +21,7 @@ function ListingsContainer() {
     })
   }
 
-  console.log(listings)
-  const myListings = listings.map((listing) => <ListingCard item={listing} onDeleteItem={handleListingDelete}/>)
+  const myListings = listings.map((listing) => <ListingCard key={listing.id} item={listing} onDeleteItem={handleListingDelete}/>)
   return (
     <main>
       <ul className="cards">
