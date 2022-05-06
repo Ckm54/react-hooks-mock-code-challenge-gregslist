@@ -7,7 +7,7 @@ function AddListingForm({ handleDataUpload }) {
     image: ""
   })
   // const [image, setImage] = useState("")
-  const [imageFile, setFile] = useState()
+  // const [imageFile, setFile] = useState()
 
   const handleChange = (event) => {
     setFormData({
@@ -16,9 +16,9 @@ function AddListingForm({ handleDataUpload }) {
     })
   }
 
-  const getImage = (e) => {
-    setFile(e.target.files[0]) //save chosen image to imagefile
-  }
+  // const getImage = (e) => {
+  //   setFile(e.target.files[0]) //save chosen image to imagefile
+  // }
 
   // function uploadImage(){
   //   const imageData = new FormData();
@@ -30,17 +30,18 @@ function AddListingForm({ handleDataUpload }) {
   function handleFormsubmit(e) {
     e.preventDefault()
     // uploadImage()
-    const sentData = {
-      ...formData,
-      image: `./images/${imageFile.name}`
-    }
-    handleDataUpload(sentData)
+    // const sentData = {
+    //   ...formData,
+    //   image: `./images/${imageFile.name}`
+    // }
+    handleDataUpload(formData)
   }
   return (
     <form onSubmit={handleFormsubmit}>
       <input type="text" name="description" placeholder="Enter description" onChange={handleChange} />
       <input type="text" name="location" placeholder="Enter location" onChange={handleChange}/>
-      <input type="file" name="image" onChange={getImage} accept="image/png, image/jpg"/>
+      <input type="text" name="image" placeholder="Enter image url" onChange={handleChange}/>
+      {/* <input type="file" name="image" onChange={getImage} accept="image/png, image/jpg"/> */}
       <input type="submit" />
     </form>
   )
