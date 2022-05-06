@@ -28,10 +28,15 @@ function App() {
     setListings(searchResult)
   }
 
+  function sortListings() {
+    const sortedListings = [...listings].sort((listing1, listing2) => (listing1.location > listing2.location) ? 1 : -1)
+    setListings(sortedListings)
+  }
+
   return (
     <div className="app">
       <Header onSearchHandle={ handleUserSearch }/>
-      <ListingsContainer productListings={listings} handleListingDelete={onItemDelete}/>
+      <ListingsContainer productListings={listings} handleListingDelete={onItemDelete} handleListingSort={sortListings}/>
     </div>
   );
 }
